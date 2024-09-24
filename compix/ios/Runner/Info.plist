@@ -23,10 +23,6 @@
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>To get location and direction</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>To get location and direction</string>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -49,5 +45,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>To get location and direction</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>To get location and direction</string>
 </dict>
 </plist>

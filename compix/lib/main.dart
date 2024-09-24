@@ -6,13 +6,13 @@
 // -> To add a pop up when 'info' is clicked
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -51,7 +51,6 @@ class PopUpScreen extends StatefulWidget {
 
 class _PopUpScreenState extends State<PopUpScreen> {
   var showPopUp = false; // Move this here
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,6 +61,7 @@ class _PopUpScreenState extends State<PopUpScreen> {
         child: ElevatedButton(
             child: const Text("Info"),
             onPressed: () {
+              Permission.locationWhenInUse.request();
               setState(() {
                   widget.showPopUp = true;
                 });
@@ -96,7 +96,12 @@ class _SecondPageState extends State<SecondPage> {
 
 class _MyHomePageState extends State<MyHomePage> {
   final int _counter = 0;
-
+@override
+  void initState() {
+    super.initState();
+    Permission.locationWhenInUse.request();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Permission.locationWhenInUse.request();
                 Navigator.pushNamed(context, '/second');
               },
         tooltip: 'Settings',
@@ -130,3 +136,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+  
