@@ -1,16 +1,15 @@
 # compix
 
-A new Flutter project.
+Who is the audience?
+The Compix app was created for everyone to use. It's simple and easy-to-follow design was intended for use by the young and old.
 
-## Getting Started
+What does Compix do?
+Compix is a handy, always available compass. It can be used to help guide you in the right direction as well as inform you of helpful compass-using tips.
 
-This project is a starting point for a Flutter application.
+Why is Compix useful?
+Compix is useful when in situations when you need to know which direction you are going. Additionally, it can teach children about the four directions.
 
-A few resources to get you started if this is your first Flutter project:
+Multiple Screenshots of your app
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Also, be sure to include an appropriate LICENSE for your application, and follow any LICENSE restrictions on code that you incorporate into your app.
