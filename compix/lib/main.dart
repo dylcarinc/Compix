@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_compass/flutter_compass.dart';
 
 void main() {
   runApp(MyApp());
@@ -100,11 +101,24 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     Permission.locationWhenInUse.request();
-    
-  }
-
+    }
+  
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder<CompassEvent>(
+      stream: FlutterCompass.events,
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error reading heading: ${snapshot.error}');
+        }
+
+        if (!snapshot.hasData) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+      
+    double? direction = snapshot.data!.heading;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -115,10 +129,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'In Degrees',
+            'In Degrees',
             ),
             Text(
-              '$_counter',
+              direction.toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
@@ -134,6 +148,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
     );
+  
+  });
   }
 }
   
