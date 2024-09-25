@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'In Degrees',
             ),
             Text(
-              direction.toString(),
+              direction!.toInt().toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
