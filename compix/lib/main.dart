@@ -14,6 +14,8 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
 
   // This widget is the root of your application.
   @override
@@ -41,37 +43,50 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class PopUpScreen extends StatefulWidget {
-  PopUpScreen({super.key});
+// class PopUpScreen extends StatefulWidget {
+//   const PopUpScreen({super.key});
   
-  set showPopUp(bool showPopUp) {}
+//   set showPopUp(bool showPopUp) {}
 
-  @override
-  State<PopUpScreen> createState() => _PopUpScreenState();
-}
+//   @override
+//   State<PopUpScreen> createState() => _PopUpScreenState();
+// }
 
-class _PopUpScreenState extends State<PopUpScreen> {
-  var showPopUp = false; // Move this here
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-            child: const Text("Info"),
-            onPressed: () {
-              Permission.locationWhenInUse.request();
-              setState(() {
-                  widget.showPopUp = true;
-                });
-            }
-        ),
-      ),
-    );
-  }
-}
+// class _PopUpScreenState extends State<PopUpScreen> {
+//   var showPopUp = false;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: const Text("Settings"),
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+//             child: const Text("Info"),
+//             onPressed: () {
+//               showDialog(
+//               context: context,
+//               builder: (BuildContext context) {
+//                 return AlertDialog(
+//                   title: const Text("Info"),
+//                   content: const Text("This is some information about the app."),
+//                   actions: [
+//                     TextButton(
+//                       onPressed: () {
+//                         Navigator.of(context).pop(); 
+//                       },
+//                       child: const Text("Close"),
+//                     ),
+//                   ],
+//                 );
+//               },
+//             );
+//           },
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
@@ -91,12 +106,37 @@ class _SecondPageState extends State<SecondPage> {
       appBar: AppBar(
         title: const Text("Settings"),
       ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // Show the pop-up dialog when the button is pressed
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text("More about the App"),
+                  content: const Text("I don't know what to write here :D."),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Close"),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text("Info"),
+        ),
+      ),
     );
   }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final int _counter = 0;
+
 @override
   void initState() {
     super.initState();
