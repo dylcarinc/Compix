@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 56, 189, 210),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 218, 221, 254),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 39, 59, 124),),
         useMaterial3: true,
       ),
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'In Degrees',
             ),
             Text(
-              direction!.toInt().toString(),
+              direction.toInt().toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 50),
