@@ -2,8 +2,8 @@
 // -> To add another page and connect it with the Settings button
 // https://www.educative.io/answers/how-to-set-the-background-in-flutter
 // -> To add a background color
-// https://stackoverflow.com/questions/78037245/how-to-create-a-popup-widget-in-flutter
-// -> To add a pop up when 'info' is clicked
+// https://www.youtube.com/watch?v=4pn-_md5Ol4
+// -> To add a pop up when 'info' is clicked on the second page
 
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -43,50 +43,7 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-// class PopUpScreen extends StatefulWidget {
-//   const PopUpScreen({super.key});
-  
-//   set showPopUp(bool showPopUp) {}
 
-//   @override
-//   State<PopUpScreen> createState() => _PopUpScreenState();
-// }
-
-// class _PopUpScreenState extends State<PopUpScreen> {
-//   var showPopUp = false;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Settings"),
-//       ),
-//       body: Center(
-//         child: ElevatedButton(
-//             child: const Text("Info"),
-//             onPressed: () {
-//               showDialog(
-//               context: context,
-//               builder: (BuildContext context) {
-//                 return AlertDialog(
-//                   title: const Text("Info"),
-//                   content: const Text("This is some information about the app."),
-//                   actions: [
-//                     TextButton(
-//                       onPressed: () {
-//                         Navigator.of(context).pop(); 
-//                       },
-//                       child: const Text("Close"),
-//                     ),
-//                   ],
-//                 );
-//               },
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
@@ -114,7 +71,7 @@ class _SecondPageState extends State<SecondPage> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: const Text("More about the App"),
+                  title: const Text("More About The App"),
                   content: const Text("I don't know what to write here :D."),
                   actions: [
                     TextButton(
@@ -136,7 +93,10 @@ class _SecondPageState extends State<SecondPage> {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
+  // https://stackoverflow.com/questions/69462733/animatedrotation-for-animating-compass
+  // -> Animation for the compass
+  double prevValue = 0.0;
+  double turns = 0.0;
 @override
   void initState() {
     super.initState();
@@ -159,6 +119,21 @@ class _MyHomePageState extends State<MyHomePage> {
         }
       
     double? direction = snapshot.data!.heading;
+    direction = direction! < 0 ? (360 + direction) : direction;
+
+    double diff = direction - prevValue;
+    if (diff.abs() > 180) {
+      if (prevValue > direction) {
+        diff = 360 - (direction - prevValue).abs();
+      } else {
+        diff = 360 - (prevValue - direction).abs();
+        diff = diff * -1;
+        }
+      }
+      turns += (diff / 360);
+      prevValue = direction;
+    
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -175,14 +150,20 @@ class _MyHomePageState extends State<MyHomePage> {
               direction!.toInt().toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 50),
+            AnimatedRotation(
+                  turns: turns,
+                  duration: const Duration(milliseconds: 250),
+                  child: const Icon(Icons.arrow_upward_outlined, size: 100),
+                ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Permission.locationWhenInUse.request();
-                Navigator.pushNamed(context, '/second');
-              },
+          Navigator.pushNamed(context, '/second');
+        },
         tooltip: 'Settings',
         child: const Icon(Icons.settings),
       ),
