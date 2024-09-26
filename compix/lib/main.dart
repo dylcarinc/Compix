@@ -72,7 +72,7 @@ class _SecondPageState extends State<SecondPage> {
               builder: (BuildContext context) {
                 return AlertDialog(
                   title: const Text("More About The App"),
-                  content: const Text("I don't know what to write here :D."),
+                  content: const Text("Compix is an app to act as your compass! To learn more about compasses, visit this site from National Geographic: https://education.nationalgeographic.org/resource/compass/."),
                   actions: [
                     TextButton(
                       onPressed: () {
