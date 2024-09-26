@@ -169,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
             AnimatedRotation(
                   turns: turns,
                   duration: const Duration(milliseconds: 250),
-                  child: const Icon(Icons.arrow_upward_outlined, size: 100),
+                  child:Image.asset("lib/asset/compass.png",fit: BoxFit.fill,)
                 ),
           ],
         ),
