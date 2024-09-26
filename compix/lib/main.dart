@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 39, 59, 124),),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'CampiX'),
+      home: const MyHomePage(title: 'CompiX'),
       initialRoute: '/',
       routes: {
         '/second': (context) => const SecondPage(),
@@ -71,6 +71,21 @@ class _SecondPageState extends State<SecondPage> {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
+                  // RichText(
+                  //   text: TextSpan(
+                  //     children: [
+                  //       TextSpan(
+                  //         text: 'Compix is an app to act as your compass! To learn more about compasses, visit this site from National Geographic: https://education.nationalgeographic.org/resource/compass/'
+                  //       style: TextStyle(color: Colors.black),
+                  //       )
+                  //       TextSeparator(widget which represents an inline link),
+                  //       TextSpan(
+                  //         text: 'Customize this part as needed.',
+                  //         style: TextStyle(color: Colors.black),
+                  //       )
+                  //     ]
+                  //     ) ,),
+
                   title: const Text("More About The App"),
                   content: const Text("Compix is an app to act as your compass! To learn more about compasses, visit this site from National Geographic: https://education.nationalgeographic.org/resource/compass/"),
                   actions: [
