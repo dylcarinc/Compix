@@ -10,7 +10,7 @@ Why is Compix useful?
 Compix is useful when in situations when you need to know which direction you are going. Additionally, it can teach children about the four directions.
 
 Describe Multiple Screenshots of your app:
-
+Our main screen
 
 
 Also, be sure to include an appropriate LICENSE for your application, and follow any LICENSE restrictions on code that you incorporate into your app.

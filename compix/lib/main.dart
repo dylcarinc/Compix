@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 218, 221, 254),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 56, 189, 210),
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 39, 59, 124),),
         useMaterial3: true,
       ),
@@ -87,7 +87,7 @@ class _SecondPageState extends State<SecondPage> {
                   //     ) ,),
 
                   title: const Text("More About The App"),
-                  content: const Text("Compix is an app to act as your compass! To learn more about compasses, visit this site from National Geographic: https://education.nationalgeographic.org/resource/compass/"),
+                  content: const Text("CompiX is an app to act as your compass! Compasses act as a guide to determine where you are facing (North, East, South, or West) and can help you in getting to a new destination. These 4 directions are referred to as the 4 Cardinal directions. The directions in between these 4 are called Ordinal directions. They include norhtwest, northeast, south west, and southeast."),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
             'In Degrees',
             ),
             Text(
-              direction.toInt().toString(),
+              direction!.toInt().toString(),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 50),
