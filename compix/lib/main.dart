@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp>  {
       ),
       darkTheme: ThemeData.dark(), // standard dark theme
       themeMode: _themeMode,
-      home: const MyHomePage(title: 'CampiX'),
+      home: const MyHomePage(title: 'CompiX'),
       initialRoute: '/',
       routes: {
         '/second': (context) => const SecondPage(),
