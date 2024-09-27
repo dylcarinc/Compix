@@ -167,7 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             const SizedBox(height: 50),
             AnimatedRotation(
-                  turns: turns,
+                  turns: - turns,
                   duration: const Duration(milliseconds: 250),
                   child:Image.asset("lib/asset/compass.png",fit: BoxFit.fill,)
                 ),
