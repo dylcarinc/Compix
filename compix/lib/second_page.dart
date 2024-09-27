@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
@@ -15,7 +16,21 @@ class _SecondPageState extends State<SecondPage> {
         title: const Text("Settings"),
       ),
       body: Center(
-        child: ElevatedButton(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+          ElevatedButton(
+            onPressed:(){
+              if(MyApp.of(context).getTheme() == ThemeMode.dark){
+                MyApp.of(context).changeTheme(ThemeMode.light);
+              }
+              else{
+                MyApp.of(context).changeTheme(ThemeMode.dark);
+              }
+            },
+            child: const Text("Change Dark/Light Mode"),
+          ),
+          ElevatedButton(
           onPressed: () {
             showDialog(
               context: context,
@@ -37,6 +52,8 @@ class _SecondPageState extends State<SecondPage> {
           },
           child: const Text("Info"),
         ),
+          ]
+        )
       ),
     );
   }

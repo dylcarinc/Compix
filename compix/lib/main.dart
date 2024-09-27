@@ -4,18 +4,25 @@
 // -> To add a background color
 // https://www.youtube.com/watch?v=4pn-_md5Ol4
 // -> To add a pop up when 'info' is clicked on the second page
+//https://stackoverflow.com/questions/61116601/how-to-reach-a-variable-of-a-class-from-another-class-in-flutter
 
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 import 'second_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
+}
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+  @override
+  _MyAppState createState() => _MyAppState();
+  static _MyAppState of(BuildContext context) => 
+      context.findAncestorStateOfType<_MyAppState>()!;
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class _MyAppState extends State<MyApp>  {
+ ThemeMode _themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,6 +33,8 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData.dark(), // standard dark theme
+      themeMode: _themeMode,
       home: const MyHomePage(title: 'CampiX'),
       initialRoute: '/',
       routes: {
@@ -33,5 +42,13 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+  void changeTheme(ThemeMode themeMode) {
+    setState(() {
+      _themeMode = themeMode;
+    });
+}
+ThemeMode getTheme(){
+  return _themeMode;
+}
 }
   
