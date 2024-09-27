@@ -6,186 +6,32 @@
 // -> To add a pop up when 'info' is clicked on the second page
 
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:flutter_compass/flutter_compass.dart';
+import 'home_page.dart';
+import 'second_page.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 56, 189, 210),
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 39, 59, 124),),
+        scaffoldBackgroundColor: const Color.fromARGB(255, 218, 221, 254),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 39, 59, 124),
+        ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'CompiX'),
+      home: const MyHomePage(title: 'CampiX'),
       initialRoute: '/',
       routes: {
         '/second': (context) => const SecondPage(),
-      }
+      },
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-
-
-class SecondPage extends StatefulWidget {
-  const SecondPage({super.key});
-  
-  @override
-  // ignore: library_private_types_in_public_api
-  _SecondPageState createState() => _SecondPageState();
-  
-}
-
-// Add a second page
-
-class _SecondPageState extends State<SecondPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Settings"),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            // Show the pop-up dialog when the button is pressed
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  // RichText(
-                  //   text: TextSpan(
-                  //     children: [
-                  //       TextSpan(
-                  //         text: 'Compix is an app to act as your compass! To learn more about compasses, visit this site from National Geographic: https://education.nationalgeographic.org/resource/compass/'
-                  //       style: TextStyle(color: Colors.black),
-                  //       )
-                  //       TextSeparator(widget which represents an inline link),
-                  //       TextSpan(
-                  //         text: 'Customize this part as needed.',
-                  //         style: TextStyle(color: Colors.black),
-                  //       )
-                  //     ]
-                  //     ) ,),
-
-                  title: const Text("More About The App"),
-                  content: const Text("CompiX is an app to act as your compass! Compasses act as a guide to determine where you are facing (North, East, South, or West) and can help you in getting to a new destination. These 4 directions are referred to as the 4 Cardinal directions. The directions in between these 4 are called Ordinal directions. They include norhtwest, northeast, south west, and southeast."),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: const Text("Close"),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-          child: const Text("Info"),
-        ),
-      ),
-    );
-  }
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  // https://stackoverflow.com/questions/69462733/animatedrotation-for-animating-compass
-  // -> Animation for the compass
-  double prevValue = 0.0;
-  double turns = 0.0;
-@override
-  void initState() {
-    super.initState();
-    Permission.locationWhenInUse.request();
-    }
-  
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<CompassEvent>(
-      stream: FlutterCompass.events,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error reading heading: ${snapshot.error}');
-        }
-
-        if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      
-    double? direction = snapshot.data!.heading;
-    direction = direction! < 0 ? (360 + direction) : direction;
-
-    double diff = direction - prevValue;
-    if (diff.abs() > 180) {
-      if (prevValue > direction) {
-        diff = 360 - (direction - prevValue).abs();
-      } else {
-        diff = 360 - (prevValue - direction).abs();
-        diff = diff * -1;
-        }
-      }
-      turns += (diff / 360);
-      prevValue = direction;
-    
-
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-            'In Degrees',
-            ),
-            Text(
-              direction!.toInt().toString(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 50),
-            AnimatedRotation(
-                  turns: - turns,
-                  duration: const Duration(milliseconds: 250),
-                  child:Image.asset("lib/asset/compass.png",fit: BoxFit.fill,)
-                ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Permission.locationWhenInUse.request();
-          Navigator.pushNamed(context, '/second');
-        },
-        tooltip: 'Settings',
-        child: const Icon(Icons.settings),
-      ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
-    );
-  
-  });
   }
 }
   
