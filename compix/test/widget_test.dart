@@ -18,7 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 
 void main() {
   testWidgets('Compass shows circular progress indicator if it cannot find value', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(const MyApp());
     final avatarFinder = find.byType(CircularProgressIndicator);
     expect(avatarFinder,findsOneWidget);
   });
@@ -28,7 +28,7 @@ void main() {
       home :Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.black,
-            title: Text("test"),
+            title: const Text("test"),
           ),
           body: Center(
             child: Column(

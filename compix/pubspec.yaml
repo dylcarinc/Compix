@@ -65,6 +65,10 @@ flutter:
   assets:
 
   - lib/asset/compass.png
+  - lib/asset/c2.png
+  - lib/asset/metallic.png
+  - lib/asset/old.png
+  - lib/asset/draw.png
 
   #   - images/a_dot_ham.jpeg
 

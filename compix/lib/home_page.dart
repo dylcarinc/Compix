@@ -1,6 +1,7 @@
 // https://stackoverflow.com/questions/69462733/animatedrotation-for-animating-compass
 // -> Animation for the compass
 
+import 'package:compix/second_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_compass/flutter_compass.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,6 +17,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   double prevValue = 0.0;
   double turns = 0.0;
+  String compassImage = "lib/asset/compass.png";
 
   @override
   void initState() {
@@ -72,7 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   turns: - turns,
                   duration: const Duration(milliseconds: 250),
                   child: Image.asset(
-                    "lib/asset/compass.png",
+                    //available compasses
+                    compassImage,
+                    //"lib/asset/compass.png",
+                    //"lib/asset/draw.png",
+                    //"lib/asset/metallic.png",
+                    //"lib/asset/old.png",
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -80,9 +87,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Permission.locationWhenInUse.request();
-              Navigator.pushNamed(context, '/second');
+            onPressed: () async {
+              final selectedCompass = await Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const SecondPage()),
+              );
+              if (selectedCompass != null && selectedCompass is String) {
+                setState(() {
+                  compassImage = selectedCompass;
+                });
+              }
             },
             tooltip: 'Settings',
             child: const Icon(Icons.settings),
